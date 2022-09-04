@@ -1,14 +1,19 @@
 package main
 
 import (
+	"day_7_git/controller"
 	"net/http"
-	"praktikum/controller"
-	//"praktikum/controller"
 
 	"github.com/labstack/echo/v4"
+	//"gorm.io/driver/postgres"
+	// "gorm.io/driver/postgres"
+	// "gorm.io/gorm"
 )
 
 func main() {
+	// dsn := "host=localhost user=postgres password=AquaYurih123 dbname=efishery_academy port=5432 sslmode=disable TimeZone=Asia/Shanghai"
+
+	// db, err := gorm.Open(postgres.Open(dsn), &gorm.Config{})
 
 	//initialize echo
 	e := echo.New()

@@ -9,14 +9,21 @@ import (
 	"github.com/labstack/echo/v4"
 )
 
-var CustomerList = make(map[int]customer)
+type Customer struct {
+	ID    int
+	name  string
+	Email string
+	//DescUser string `json:"description_user"`
+}
+
+var CustomerList = make(map[int]Customer)
 
 var LastID int = 1
 
 func GetCustomer(c echo.Context) (err error) {
-	var result []customer
+	var result []Customer
 
-	dataDummyCustomer := customer{
+	dataDummyCustomer := Customer{
 		ID:    1,
 		name:  "Yurih",
 		Email: "yurih@mail.com",
@@ -41,13 +48,13 @@ func CreateCustomer(c echo.Context) error {
 	log.SetOutput(file)
 
 	log.Println("Masuk ke create user")
-	req := new(customer)
+	req := new(Customer)
 	if err := c.Bind(req); err != nil {
 		return c.JSON(http.StatusBadRequest, nil)
 	}
 
 	log.Println("Req data masuk", req)
-	user := customer{
+	user := Customer{
 		ID:    LastID,
 		name:  req.name,
 		Email: req.Email,
@@ -67,14 +74,14 @@ func GetCustomerId(c echo.Context) error {
 }
 
 func UpdateCustomer(c echo.Context) error {
-	cust := new(customer)
-	var AllCust = []customer{}
+	cust := new(Customer)
+	var AllCust = []Customer{}
 	if err := c.Bind(cust); err != nil {
 		return err
 	}
 
 	Id, _ := strconv.Atoi(c.Param("id"))
-	UpCust := customer{
+	UpCust := Customer{
 		ID:    AllCust[Id].ID,
 		name:  cust.name,
 		Email: cust.Email,
