@@ -1,0 +1,3 @@
+jwt:
+  accessTokenTime: 1
+  refreshTokenTime: 86400
